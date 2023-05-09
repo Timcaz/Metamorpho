@@ -94,6 +94,8 @@
             this.listBox_files.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBox_files.Size = new System.Drawing.Size(240, 342);
             this.listBox_files.TabIndex = 1;
+            this.listBox_files.DragDrop += new System.Windows.Forms.DragEventHandler(this.listBox_files_DragDrop);
+            this.listBox_files.DragEnter += new System.Windows.Forms.DragEventHandler(this.listBox_files_DragEnter);
             // 
             // button_removeSelected
             // 

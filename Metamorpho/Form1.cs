@@ -54,7 +54,7 @@ namespace Metamorpho
             do
             {
                 listBox_files.Items.Remove(listBox_files.SelectedItem);
-            } while (listBox_files.SelectedIndex > 0);
+            } while (listBox_files.SelectedIndex >= 0);
         }
 
         private void comboBox_codec_SelectedIndexChanged(object sender, EventArgs e)
@@ -454,6 +454,23 @@ namespace Metamorpho
                 textBox_arguments.Text = textBox_arguments.Text.Replace(" -j 1", " -j 0");
                 comboBox_distance.Enabled = true;
                 comboBox_distanceAlpha.Enabled = true;
+            }
+        }
+
+        private void listBox_files_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] droppedFiles = (string[])e.Data.GetData(DataFormats.FileDrop);
+            foreach (string file in droppedFiles)
+            {
+                listBox_files.Items.Add(file);
+            }
+        }
+
+        private void listBox_files_DragEnter(object sender, DragEventArgs e)
+        {
+            if(e.Data.GetDataPresent(DataFormats.FileDrop,false) == true)
+            {
+                e.Effect = DragDropEffects.All;
             }
         }
     }
